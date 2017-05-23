@@ -16,7 +16,7 @@ My journey learning languages after finishing my basic groundwork of java (oop a
 - writing a simple game in Unreal (C++): Not Started
 - Learn C# : Not Started
 - write a simple C# game in Unity : Not Started
-- Understang the foundations of writing an operating system : Not Started
+- Understand the foundations of writing an operating system : Not Started
 
 END GOAL
 - build my own linux distribution : Not Started
