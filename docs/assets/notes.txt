@@ -1,0 +1,2 @@
+<!DOCTYPE html> //makes this a webpage
+<strong>makes message bold</strong>
