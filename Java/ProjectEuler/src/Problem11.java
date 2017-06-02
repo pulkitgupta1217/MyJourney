@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Calendar;
 
 /**
  * What is the greatest product of four adjacent numbers in the same direction
@@ -7,6 +8,7 @@ import java.util.Arrays;
  */
 public class Problem11 {
     public static void main(String[] args) {
+        System.out.println(Calendar.getInstance().getTime());
         int[][] grid = new int[20][20];
         String[] r1 = "08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08".split(" ");
         String[] r2 = "49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00".split(" ");
@@ -39,10 +41,71 @@ public class Problem11 {
         }
         System.out.println("built table");
         int max = 0;
+
         for (int r = 0; r < grid.length; r++) {
-            for (int c = 0; c < grid[r].length; c++){
-                //TODO: find sums
+            for (int c = 0; c < grid[r].length; c++) {
+                //row
+                int product = 1;
+                for (int i = 0; i < 4 && c < grid[r].length - 3; i++) {
+                    product *= grid[r][c + i];
+                }
+                max = Math.max(product, max);
+
+                //col
+                product = 1;
+                for (int i  = 0; i < 4 && r < grid.length - 3; i++) {
+                    product *= grid[r + i][c];
+                }
+                max = Math.max(product, max);
+
+                //main diag
+                product = 1;
+                for (int i = 0; i < 4 && r < grid.length - 3 && c < grid[r].length - 3; i++) {
+                    product *= grid[r + i][c + i];
+                }
+                max = Math.max(product, max);
+
+                //counter diag
+                product = 1;
+                for (int i = 0; i < 4 && r > 3 && c > 3; i++) {
+                    product *= grid[r - i][c - i];
+                }
+                max = Math.max(product, max);
+                System.out.println(max);
             }
         }
+        System.out.println("found max: " + max);
+
+        /*for (int r = 0; r < grid.length; r++) {
+            for (int c = 0; c < grid[r].length - 4; c++){
+                int sum = grid[r][c] * grid[r][c + 1] * grid[r][c + 2] * grid[r][c + 3];
+                max = Math.max(max, sum);
+            }
+        }
+        int rowsum = max;
+        System.out.println(rowsum);
+        for (int c = 0; c < grid[0].length; c++) {
+            for (int r = 0; r < grid.length - 4; r++) {
+                int sum = grid[r][c] * grid[r + 1][c] * grid[r + 2][c] * grid[r+3][c];
+                max = Math.max(max, sum);
+            }
+        }
+        int colsum = max;
+        System.out.println(colsum);
+        //TODO: fix
+        for (int r = 0; r < grid.length - 4; r++) {
+            for (int c = 0; c < grid[r].length - 4; c++) {
+                int sum = grid[r][c] * grid[r][c + 1] * grid[r][c + 2] * grid[r][c + 3];
+                max = Math.max(max, sum);
+            }
+        }
+        for (int r = grid.length - 1; r >= 3; r--) {
+            for (int c = grid[r].length - 1; c >= 3; c--) {
+                int sum = grid[r][c] * grid[r][c - 1] * grid[r][c - 2] * grid[r][c - 3];
+                max = Math.max(max, sum);
+            }
+        }
+        int diagsum = max;
+        System.out.println("\n" + max);*/
     }
 }
