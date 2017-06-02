@@ -10,7 +10,7 @@ My journey learning languages after finishing my basic groundwork of java (oop a
 - start working on simple C programs : Not Started
 - start writing my own GBA game : Not Started
 - project euler in C : Not Started
-- start learning C++ : Not Started
+- start learning C++ : Not Started (may skip)
 - datastructures in C/C++ : Not Started
 - OOP in C++ : Not Started
 - writing a simple game in Unreal (C++): Not Started
