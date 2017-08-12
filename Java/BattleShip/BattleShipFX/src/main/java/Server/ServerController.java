@@ -1,7 +1,6 @@
 package main.java.Server;
 
 import javafx.scene.control.TextArea;
-import main.java.Controller.BattleShipController;
 
 import java.io.IOException;
 

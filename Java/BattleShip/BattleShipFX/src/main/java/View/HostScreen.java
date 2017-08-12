@@ -40,6 +40,7 @@ public class HostScreen extends Application {
         ServerPane serverPane = new ServerPane();
         primaryStage.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, event -> {
             try {
+                System.out.println("shutting down server");
                 ServerController.close();
                 BattleShipController.close();
             } catch (NullPointerException npe) {
@@ -68,6 +69,7 @@ public class HostScreen extends Application {
             hosting = new HBox(20);
             hosting.setAlignment(Pos.CENTER);
             hostButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                System.out.println("starting server");
                 hostButton.setVisible(false);
                 output = new TextArea("Starting Server:");
                 output.setEditable(false);
@@ -80,14 +82,18 @@ public class HostScreen extends Application {
                 getChildren().add(hosting);
                 try {
                     //todo: create server config menu
+                    System.out.println("host screen line 84");
                     ServerController.createServer(output, users);
                     //start game!!
                     //TODO: check actual args for server
-                    if (BattleShipController.createClientConnection(BattleShipController.getDefaultIP(), BattleShipController.getDefaultPort(), BattleShipController.getDefaultGameID(), () -> startGame.accept())) {
+                    System.out.println("attempting to create client connection and start game: Hostscreen line 88");
+                    if (BattleShipController.createClientConnection(BattleShipController.getDefaultIP(), BattleShipController.getDefaultPort(), BattleShipController.getDefaultGameID(), startGame)) {
+                        System.out.println("connected to client: HS.java : 90");
                         primaryStage.toBack();
                     } else {
+                        System.out.println("failed to connect to client: HS.java : 93");
                         try {
-                            new ErrorWindow("failed to start server").start(new Stage());
+                            new ErrorWindow("failed to connect to server").start(new Stage());
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

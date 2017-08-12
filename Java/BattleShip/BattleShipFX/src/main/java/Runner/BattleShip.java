@@ -4,20 +4,13 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import main.java.Controller.BattleShipController;
 import main.java.Model.CallBack;
 import main.java.Server.ServerController;
 import main.java.View.*;
-
-import javax.security.auth.callback.Callback;
-import java.util.function.Consumer;
-
 
 public class BattleShip extends Application {
     private Stage primary;
@@ -58,6 +51,7 @@ public class BattleShip extends Application {
                 //game.setBackground(new Background(new BackgroundImage(new Image("file:\\src\\main\\java\\view\\image\\ocean.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
                 //System.out.println(game.getBackground().getImages().get(0).getImage().impl_getUrl());
                 //primaryStage.setScene(new Scene(, 1920, 1000));
+
                 primaryStage.setScene(new Scene(game, 1920, 1000));
                 Image background = new Image("file:resources/image/ocean.png", 1920, 1000, false, false);
                 game.setBackground(new Background(new BackgroundImage(background, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
@@ -81,12 +75,13 @@ public class BattleShip extends Application {
             }, () -> {
                 //solo/vsPC
                 //TODO: create host in background without showing and use stored Computer AI
-            /*TODO: create AI
-            * Normal: picks random spots and clusters on hit
-            * Hard: picks random spots then follows consecutive hits till sink
-            * Impossible: Machine learning algorithm learns the most often used
-            *       ship locations and develops attack patterns from there,
-            *       may download periodic updates as time progresses in a future form*/
+                /*TODO: create AI
+                * Normal: picks random spots and clusters on hit
+                * Hard: picks random spots then follows consecutive hits till sink
+                * Impossible: Machine learning algorithm learns the most often used
+                *       ship locations and develops attack patterns from there,
+                *       may download periodic updates as time progresses in a future form
+                **/
 
             });
         });
