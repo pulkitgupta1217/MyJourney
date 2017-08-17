@@ -2,14 +2,15 @@ package main.java.Server;
 
 import javafx.scene.control.TextArea;
 import main.java.Controller.BattleShipController;
+import main.java.Model.CallBack;
 
 import java.io.IOException;
 
 public class ServerController {
     private static ServerHost serverHost;
 
-    public static void createServer(TextArea output, TextArea users) throws IOException{
-        serverHost = new ServerHost(output, users);
+    public static void createServer(TextArea output, TextArea users, CallBack complete) throws IOException{
+        serverHost = new ServerHost(output, users, complete);
         serverHost.start();
     }
 

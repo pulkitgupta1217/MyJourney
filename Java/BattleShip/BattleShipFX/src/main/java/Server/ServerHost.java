@@ -1,7 +1,9 @@
 package main.java.Server;
 
 import javafx.scene.control.TextArea;
+import jdk.nashorn.internal.codegen.CompilerConstants;
 import main.java.Controller.BattleShipController;
+import main.java.Model.CallBack;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -23,11 +25,13 @@ public class ServerHost extends Thread {
     private ServerSocket hostSocket;
     private TextArea output, users;
     private HashMap<String, String> configMap;
+    private CallBack complete;
     //todo: decide timeout for server
     private int timeout = 0;
 
-    public ServerHost(TextArea output, TextArea users) throws IOException {
+    public ServerHost(TextArea output, TextArea users, CallBack complete) throws IOException {
         this();
+        this.complete = complete;
         this.output = output;
         this.users = users;
     }
@@ -41,6 +45,13 @@ public class ServerHost extends Thread {
         writeToOutput("starting server output");
         writeToUsers("user list: ");
         writeToOutput("waiting for client on port: " + hostSocket.getLocalPort() + "...");
+        System.out.println("starting server" + System.currentTimeMillis());
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            System.out.println("done waiting for server to start");
+            complete.accept();
+        }
         while (true) {
             try {
                 Socket server = hostSocket.accept();

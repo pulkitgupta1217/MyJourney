@@ -80,18 +80,20 @@ public class HostScreen extends Application {
                 getChildren().add(hosting);
                 try {
                     //todo: create server config menu
-                    ServerController.createServer(output, users);
-                    //start game!!
-                    //TODO: check actual args for server
-                    if (BattleShipController.createClientConnection(BattleShipController.getDefaultIP(), BattleShipController.getDefaultPort(), BattleShipController.getDefaultGameID(), () -> startGame.accept())) {
-                        primaryStage.toBack();
-                    } else {
-                        try {
-                            new ErrorWindow("failed to start server").start(new Stage());
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                    ServerController.createServer(output, users, () -> {
+                        //start game!!
+                        //TODO: check actual args for server
+                        if (BattleShipController.createClientConnection(BattleShipController.getDefaultIP(), BattleShipController.getDefaultPort(), BattleShipController.getDefaultGameID(), () -> startGame.accept())) {
+                            primaryStage.toBack();
+                        } else {
+                            try {
+                                new ErrorWindow("failed to start server").start(new Stage());
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
-                    }
+                    });
+
 
                 } catch (IOException ioe) {
                     System.out.println(ioe.getMessage());
