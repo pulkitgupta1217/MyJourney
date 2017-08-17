@@ -41,6 +41,7 @@ public class ServerHost extends Thread {
         writeToOutput("starting server output");
         writeToUsers("user list: ");
         writeToOutput("waiting for client on port: " + hostSocket.getLocalPort() + "...");
+        System.out.println("starting server" + System.currentTimeMillis());
         while (true) {
             try {
                 Socket server = hostSocket.accept();

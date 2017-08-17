@@ -25,7 +25,7 @@ public class Client {
     }
     public String connectToServer() {
         try {
-            System.out.println("connecting to server at: " + serverIP + ", on port: " + port + "...");
+            System.out.println("connecting to server at: " + serverIP + ", on port: " + port + " ..." + System.currentTimeMillis());
             Socket connection = new Socket(serverIP, port);
             System.out.println("just connected to server: " + connection.getRemoteSocketAddress());
             ObjectOutputStream out = new ObjectOutputStream(connection.getOutputStream());

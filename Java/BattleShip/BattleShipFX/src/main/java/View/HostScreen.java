@@ -99,6 +99,7 @@ public class HostScreen extends Application {
                         }
                     }
 
+
                 } catch (IOException ioe) {
                     System.out.println(ioe.getMessage());
                 }
