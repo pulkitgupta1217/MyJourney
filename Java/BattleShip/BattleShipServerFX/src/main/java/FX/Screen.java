@@ -54,6 +54,7 @@ public class Screen extends StackPane {
         start.getChildren().add(hostButton);
         getChildren().addAll(start);
     }
+
     public ServerHost getServerHost() {
         return server;
     }

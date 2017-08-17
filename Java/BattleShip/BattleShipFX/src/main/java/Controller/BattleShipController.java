@@ -15,7 +15,7 @@ public class BattleShipController {
     private static HashMap<String, String> userSettings;
     private static HashSet<String> correctUserSettings = new HashSet<>(Arrays.asList("username"));
     private static Stage primaryStage;
-    private static String defaultPort = "1234";
+    private static String defaultPort = "12345";
     private static int defaultGameID;
     private static String defaultIP = "127.0.0.1";
     private static Client user;
