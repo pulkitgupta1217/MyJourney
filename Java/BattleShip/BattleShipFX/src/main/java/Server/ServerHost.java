@@ -43,8 +43,9 @@ public class ServerHost extends Thread {
         writeToOutput("waiting for client on port: " + hostSocket.getLocalPort() + "...");
         System.out.println("starting server" + System.currentTimeMillis());
         while (true) {
+            Socket server = null;
             try {
-                Socket server = hostSocket.accept();
+                server = hostSocket.accept();
                 writeToOutput("Connected to: " + server.getRemoteSocketAddress());
                 DataInputStream in = new DataInputStream(server.getInputStream());
                 String userAdded = in.readUTF();
@@ -61,9 +62,14 @@ public class ServerHost extends Thread {
                 break;
             } catch (SocketException e) {
                 System.out.println(e.getMessage());
+                break;
             } catch (IOException ioe) {
                 ioe.printStackTrace();
                 break;
+            } finally {
+                try {
+                    server.close();
+                } catch (IOException ioe) { }
             }
         }
 
